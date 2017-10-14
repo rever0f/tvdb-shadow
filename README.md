@@ -15,18 +15,23 @@ exercise to search tvdb api in ruby on rails
 ### deployed to heroku
 
     Creating app... done, ⬢ guarded-ridge-26178
-    https://guarded-ridge-26178.herokuapp.com/
     https://git.heroku.com/guarded-ridge-26178.git
+
+https://guarded-ridge-26178.herokuapp.com/
 
 
 ### install
 
-todo
+requires ruby, gem, and bundle
+clone git repo
 
+   cd /path/to/tvdb-shadow/
+   bundle install --without production
+   
 
 ### run
 
-todo
+   rails server
 
 
 ### todo
