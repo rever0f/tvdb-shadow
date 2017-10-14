@@ -28,10 +28,14 @@ clone git repo
    cd /path/to/tvdb-shadow/
    bundle install --without production
    
+todo: test
+   
 
 ### run
 
    rails server
+   
+todo: test
 
 
 ### todo
