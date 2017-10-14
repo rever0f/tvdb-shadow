@@ -14,8 +14,9 @@ exercise to search tvdb api in ruby on rails
 
 ### deployed to heroku
 
-Creating app... done, ⬢ glacial-basin-46670
-https://glacial-basin-46670.herokuapp.com/ | https://git.heroku.com/glacial-basin-46670.git
+    Creating app... done, ⬢ guarded-ridge-26178
+    https://guarded-ridge-26178.herokuapp.com/
+    https://git.heroku.com/guarded-ridge-26178.git
 
 
 ### install
