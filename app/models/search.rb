@@ -22,7 +22,7 @@ class Search < ApplicationRecord
       counts = counts.sort_by{ | k, v | v }.reverse
     end
 
-    Search.select(query,:created_at).group(query).
+    Search.select(query,'max(searches.created_at)').group(query).
       order(order).limit(10).offset(start)
   end
 end
