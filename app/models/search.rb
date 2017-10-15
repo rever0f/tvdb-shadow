@@ -12,7 +12,7 @@ class Search < ApplicationRecord
     created = :created_at
     orders = {'created' =>  created, 'query' => query,
               count => count}
-    order = orders.fetch(order, created)
+    order = orders.fetch(order, query)
 
     # return order
 
