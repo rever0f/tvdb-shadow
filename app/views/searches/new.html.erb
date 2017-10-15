@@ -1,0 +1,14 @@
+<h1>Search TVDB</h1>
+
+<%= render 'form', search: @search %>
+
+<% if @aquery %>
+   <div class='search-times' >
+     <%= @aquery %> has been searched x times
+   </div>
+   <div class='search-result >
+     search returned x results
+   </div>
+<% end %>
+
+<%# link_to 'Back', searches_path %>
