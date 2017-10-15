@@ -17,9 +17,13 @@
   <% @baseTo = new_search_path + '?query=' %>
   <% @baseSort = @baseTo + @aquery + '&sort=' %>
   <div class = 'search-recents-sort' >
-    order by -
+    sort by -
     <% @sortopts.each do | sort | %>
-      <span><a href=<%= @baseSort + sort %> ><%= sort %></a></span>
+      <span>
+        <a href=<%= new_search_path(query: @aquery, sort: sort) %> >
+          <%= sort %>
+        </a>&nbsp
+      </span>
     <% end %>
   </div>
   <% @recents.each do | recent | %>

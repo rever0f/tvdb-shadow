@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
 
   # GET /searches/new
   def new
-    get = request.GET
+    get = request.get? ? request.GET : {}
     @aquery = get.fetch('query', '')
     @sort = get.fetch('sort', '')
     @search = Search.new
@@ -44,7 +44,7 @@ class SearchesController < ApplicationController
         format.html { redirect_to action: 'new', query: @search.query }
         format.json { render :show, status: :created, location: @search }
       else
-        format.html { render :new }
+        format.html { redirect_to action: 'new' }
         format.json { render json: @search.errors, status: :unprocessable_entity }
       end
     end
