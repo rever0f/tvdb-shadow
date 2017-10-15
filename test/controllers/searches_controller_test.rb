@@ -20,7 +20,7 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
       post searches_url, params: { search: { query: @search.query } }
     end
 
-    assert_redirected_to search_url(Search.last)
+    assert_redirected_to(new_search_url + '?query=MyString')
   end
 
   test "should show search" do
@@ -30,12 +30,12 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
 
   test "should get edit" do
     get edit_search_url(@search)
-    assert_response :success
+    assert_redirected_to new_search_url
   end
 
   test "should update search" do
     patch search_url(@search), params: { search: { query: @search.query } }
-    assert_redirected_to search_url(@search)
+    assert_redirected_to new_search_url
   end
 
   test "should destroy search" do
