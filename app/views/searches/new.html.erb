@@ -24,9 +24,10 @@
   </div>
   <% @recents.each do | recent | %>
     <div class='search-recent' >
-      <a href=<%= @baseTo + recent.query %>&add=1'>
-        <%= recent.query %>
-      </a>
+      <%= form_tag "/searches" do %>
+        <%= hidden_field_tag 'search[query]', recent.query %>
+        <%= submit_tag recent.query %>
+      <% end %>
     </div>
   <% end %>
 </div>
