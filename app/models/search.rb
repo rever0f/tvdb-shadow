@@ -9,7 +9,7 @@ class Search < ApplicationRecord
   def getRecent(order='query', start=0)
     count = 'count'
     query = :query
-    created = :created_at
+    created = 'max(searches.created_at)'
     orders = {'created' =>  created, 'query' => query,
               count => count}
     order = orders.fetch(order, query)
