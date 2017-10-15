@@ -12,7 +12,7 @@ class Search < ApplicationRecord
     created = 'max(searches.created_at)'
     orders = {'created' =>  created, 'query' => query,
               count => count}
-    order = orders.fetch(order, query)
+    order = orders.fetch(order, created)
 
     # return order
 
