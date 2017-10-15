@@ -14,6 +14,8 @@ class Search < ApplicationRecord
               count => count}
     order = orders.fetch(order, created)
 
+    # return order
+
     if order == count
       order = created
       counts = Search.group(query).count
