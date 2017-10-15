@@ -15,8 +15,8 @@ class SearchesController < ApplicationController
   # GET /searches/new
   def new
     get = request.GET
-    @aquery = get['query']
-    @sort = get['sort']
+    @aquery = get.fetch('query', '')
+    @sort = get.fetch('sort', '')
     @search = Search.new
     @count = @search.getQueryCount(@aquery)
     @recents = @search.getRecent(@sort)
