@@ -7,6 +7,6 @@ class SearchTest < ActiveSupport::TestCase
   
 
   test "get recent" do
-    assert Search.new.getRecent.count 1
+    assert Search.new.getRecent('created').count 3
   end
 end
