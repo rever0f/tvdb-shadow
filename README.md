@@ -41,19 +41,22 @@ todo: test
 ### todo
 
 - search page
-  - tableless model?
-  - test 200 response
+  - test 200 response?
+  - current search past dates
   - previous searches
     - test firefly search
+    - order by
+      - count
+  - style
 - results
   - current key
     - is stored?
     - get new
     - test
-  - number of times searched
   - test firefly search success(200?)
   - test create firefly search
   - test search num incremented
+  - result count
   - series on-click link
     - thumbnail
     - title 
@@ -66,6 +69,12 @@ todo: test
 
 
 ### done
+- search page
+  - previous searches
+    - number of times searched
+    - order by
+      - created
+      - query
 
 
 [deployed to heroku]:#deployed-to-heroku

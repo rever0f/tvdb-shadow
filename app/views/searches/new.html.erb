@@ -1,14 +1,35 @@
 <h1>Search TVDB</h1>
 
-<%= render 'form', search: @search %>
+<div class='search-left search-content' >
+  <%= render 'form', search: @search %>
 
-<% if @aquery %>
-   <div class='search-times' >
-     <%= @aquery %> has been searched x times
-   </div>
-   <div class='search-result >
-     search returned x results
-   </div>
-<% end %>
+  <% if @aquery %>
+    <div class='search-result' >
+      search returned x results
+    </div>
+    <div class='search-right search-data' >
+      <p><%= @aquery %> has been searched <%= @count %> times</p>
+    </div>
+  <% end %>
+</div>
+
+<div class='search-right search-history' >
+  <% @baseTo = new_search_path + '?query=' %>
+  <% @baseSort = @baseTo + @aquery + '&sort=' %>
+  <div class = 'search-recents-sort' >
+    order by -
+    <% @sortopts.each do | sort | %>
+      <span><a href=<%= @baseSort + sort %> ><%= sort %></a></span>
+    <% end %>
+  <% @recents.each do | recent| %>
+    <div class='search-recent' >
+      <a href=<%= @baseTo + recent.query %>&add=1'>
+        <%= recent.query %>
+      </a>
+    </div>
+  <% end %>
+</div>
+
+</div>
 
 <%# link_to 'Back', searches_path %>
