@@ -22,11 +22,13 @@
       <span><a href=<%= @baseSort + sort %> ><%= sort %></a></span>
     <% end %>
   </div>
-  <%# @recents.first %>
-  <%= @recents.methods %>
-  <br><br>
-  <%= @recents.length %>
-  <%= @recents.columns_hash %>
+  <% @recents.each do | recent | %>
+    <div class='search-recent' >
+      <a href=<%= @baseTo + recent.query %>&add=1'>
+        <%= recent.query %>
+      </a>
+    </div>
+  <% end %>
 </div>
 
 </div>
