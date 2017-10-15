@@ -22,9 +22,7 @@
       <span><a href=<%= @baseSort + sort %> ><%= sort %></a></span>
     <% end %>
   </div>
-  <% @recents.each do | arecent | %>
-    <%= arecent.query %>
-  <% end %>
+  <% @recents.method %>
 </div>
 
 </div>
