@@ -6,7 +6,7 @@ class Search < ApplicationRecord
     Search.where(query: aquery).count
   end
   
-  def getRecent(order='query', start=0)
+  def getRecent(order='query', start=0, page=0)
     count = 'count'
     query = :query
     created = 'max(searches.created_at)'
@@ -19,10 +19,11 @@ class Search < ApplicationRecord
     if order == count
       order = created
       counts = Search.group(query).count
-      counts = counts.sort_by{ | k, v | v }.reverse
+      return counts.sort_by{ | k, v | v }.reverse
     end
 
     Search.select(query,'max(searches.created_at)').group(query).
-      order(order).limit(10).offset(start)
+      order(order)
+      # order(order).limit(10).offset(start)
   end
 end

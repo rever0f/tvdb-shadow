@@ -44,7 +44,6 @@ todo: test
   - test 200 response?
   - current search past dates
   - previous searches
-    - add on link
     - test firefly search
     - order by
       - count
@@ -72,6 +71,7 @@ todo: test
 ### done
 - search page
   - previous searches
+    - add on link
     - number of times searched
     - order by
       - created

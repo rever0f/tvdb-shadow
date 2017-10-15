@@ -19,8 +19,15 @@ class SearchesController < ApplicationController
     @sort = get.fetch('sort', '')
     @search = Search.new
     @count = @search.getQueryCount(@aquery)
-    @recents = @search.getRecent(@sort)
+    recentsRaw = @search.getRecent(@sort)
+    @recents = []
     @sortopts = ['created', 'query', 'count']
+    
+    recentsRaw.each do | v |
+      trecent = (@sort == 'count' ? v[0] : v.query)
+      trecent = v.query
+      @recents.append(trecent)
+    end
   end
 
   # GET /searches/1/edit
