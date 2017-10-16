@@ -78,15 +78,12 @@ after git commit on master
     - is stored?
     - get new
     - test
-  - result count
-  - series on-click link
-    - thumbnail
-    - title 
-    - rating
   - advanced
     - filter by endpoints
-    - previous advanced dropdowns
 - readme
+  - toc
+    - heroku
+    - local
   - install
   - run
 - default ruby functions
@@ -102,7 +99,12 @@ after git commit on master
       - count
       - created
       - query
-
+- results
+  - result count
+  - series on-click link
+    - title 
+    - start date
+    - rating
 
 [deployed to heroku]:#deployed-to-heroku
 [install]:#install
