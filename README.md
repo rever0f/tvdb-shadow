@@ -22,20 +22,26 @@ https://guarded-ridge-26178.herokuapp.com/
 
 ### install
 
+todo: test below
+
 requires ruby, gem, and bundle
 clone git repo
 
    cd /path/to/tvdb-shadow/
    bundle install --without production
-   
-todo: test
+   cp config/env-template.sh config/env.sh
+   vi config/env.sh
+   # fill in fields
+   chmod +x config/env.sh
    
 
 ### run
 
+todo: test below
+
+   cd /path/to/tvdb-shadow
+   config/env.sh
    rails server
-   
-todo: test
 
 
 ### todo

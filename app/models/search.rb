@@ -45,9 +45,9 @@ class Search < ApplicationRecord
 
   def getTvAuth
     loginData = RestClient.post(tvdbBase + '/login',
-                                {"apikey":"fix secrets/get env",
-                                 "username":"inkling",
-                                 "userkey":"fix secrets/get env"}.to_json,
+                                {"apikey": ENV['SECRET_TVDB_API_KEY'],
+                                 "username": ENV['SECRET_TVDB_USER'],
+                                 "userkey": ENV['SECRET_TVDB_USER_KEY']}.to_json,
                                 content_type: 'application/json')
     atoken = JSON.parse(loginData)['token']
 
