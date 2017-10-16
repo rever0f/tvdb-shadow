@@ -4,14 +4,30 @@
   <div class='search-result' >
   <%= render 'form', search: @search %>
 
+  <p><%# @token %></p>
   <% if @aquery != '' %>
-      search returned x results
+    search returned <%= @seriesFound.count %> results
+      <div class='search-series-found' >
+        <div class='search-results-headrow search-series' >
+          <span class='search-results-header search-title' >Name</span>
+          <span class='search-results-header search-series-date' >Start Date</span>
+          <span class='search-results-header search-series-rating' >Rating</span>
+        </div>
+      <% @seriesFound.each do | series | %>
+        <% @seriesLink = 'https://www.thetvdb.com/?tab=series&id=' + u(series['id']) %>
+        <div class="search-series" onclick="window.open('<%= @seriesLink %>', '_blank')" >
+          <span class='search-title' ><%= series['seriesName'] %></span>
+          <span class='search-series-date' ><%= series['firstAired'] %></span>
+          <span class='search-series-rating' ><%= series['rating'] %></span>
+        </div>
+      <% end %>
+      </div>
     </div>
     <div class='search-right search-data' >
-      <p>
-        <%= @aquery %> has been searched 
+      <div class='search-label search-count-title' >
+        <%= h @aquery %> has been searched 
         <%= @ahistory['count'] %> times
-      </p>
+      </div>
       <div class='search-label search-date-title'>
         on these dates
       </div>
@@ -29,7 +45,7 @@
     sort by -
     <% @sortopts.each do | sort | %>
       <span>
-        <a href=<%= new_search_path(query: @aquery, sort: sort) %> >
+        <a href=<%= new_search_path(query: @urlquery, sort: sort) %> >
           <%= sort %>
         </a>&nbsp
       </span>
@@ -37,9 +53,10 @@
   </div>
   <% @recents.each do | recent | %>
     <div class='search-recent' >
+      <% @htmlRecent = h(recent) %>
       <%= form_tag "/searches" do %>
-        <%= hidden_field_tag 'search[query]', recent %>
-        <%= submit_tag recent %>
+        <%= hidden_field_tag 'search[query]', @htmlRecent %>
+        <%= submit_tag @htmlRecent %>
       <% end %>
     </div>
   <% end %>

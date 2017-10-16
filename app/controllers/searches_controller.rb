@@ -17,15 +17,22 @@ class SearchesController < ApplicationController
     get = request.get? ? request.GET : {}
     @aquery = get.fetch('query', '')
     @sort = get.fetch('sort', '')
+    @recents = []
+    @sortopts = ['created', 'query', 'count']
+
     @search = Search.new
     @ahistory = @search.getQueryHistory(@aquery)
     recentsRaw = @search.getRecent(@sort)
-    @recents = []
-    @sortopts = ['created', 'query', 'count']
+    # @token = @search.getTvAuth
     
+
+    @urlquery = ERB::Util.url_encode(@aquery)
     recentsRaw.each do | v |
       @recents.append(@sort == 'count' ? v[0] : v.query)
     end
+
+    if @aquery == '' then return end
+    @seriesFound = @search.getResults(@urlquery)
   end
 
   # GET /searches/1/edit

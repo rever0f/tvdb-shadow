@@ -54,6 +54,33 @@ class Search < ApplicationRecord
     return {Authorization: 'Bearer ' + atoken}
   end
 
+
+  def getTvEndpoint(endPoint)
+    begin 
+      return RestClient.get(tvdbBase + endPoint, getTvAuth)
+    rescue
+      return {'data'=>[]}.to_json
+    end
+  end
+
+
   def getResults(aquery)
+    results = []
+    data = 'data'
+    series = 'series'
+    search = '/search/' + series
+    querySearch = getTvEndpoint(search + '?name=' + aquery)
+    rawResults = JSON.parse(querySearch)[data]
+
+    rawResults.each do | v |
+      seriesId = '/' + series + '/' + String(v['id'])
+      results.append(JSON.parse(getTvEndpoint(seriesId))[data])
+    end
+    
+    return results
+    # seriesData = getTvEndpoint(seriesId)
+    # JSON.parse(getTvEndpoint(seriesId))[data]
+    # sdep = getTvEndpoint(seriesId + '/episodes')
+    # params = getTvEndpoint(search + '/params')
   end
 end

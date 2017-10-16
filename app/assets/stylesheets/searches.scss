@@ -26,7 +26,18 @@ body {
     width: 700px;
 }
 
-.search-result {
+.search-result, .search-series {
     width: 450px;
     float: left;
 }
+
+.search-series-date, .search-series-rating {
+    width: 25%;
+    display: inline-block;
+}
+
+.search-title {
+    width: 45%;
+    display: inline-block;
+}
+
