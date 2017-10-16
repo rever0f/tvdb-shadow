@@ -22,7 +22,6 @@ class SearchesController < ApplicationController
     recentsRaw = @search.getRecent(@sort)
     @recents = []
     @sortopts = ['created', 'query', 'count']
-    @env_user = ENV['SECRET_TVDB_USER']
     
     recentsRaw.each do | v |
       @recents.append(@sort == 'count' ? v[0] : v.query)
