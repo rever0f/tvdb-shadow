@@ -24,8 +24,7 @@ class SearchesController < ApplicationController
     @sortopts = ['created', 'query', 'count']
     
     recentsRaw.each do | v |
-      trecent = (@sort == 'count' ? v[0] : v.query)
-      @recents.append(trecent)
+      @recents.append(@sort == 'count' ? v[0] : v.query)
     end
   end
 

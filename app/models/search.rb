@@ -1,3 +1,7 @@
+require 'json'
+require 'rest_client'
+
+
 class Search < ApplicationRecord
   validates :query, presence: true
 
@@ -33,5 +37,23 @@ class Search < ApplicationRecord
     Search.select(query,'max(searches.created_at)').group(query).
       order(order)
       # order(order).limit(10).offset(start)
+  end
+  
+  def tvdbBase
+    'https://api.thetvdb.com'
+  end
+
+  def getTvAuth
+    loginData = RestClient.post(tvdbBase + '/login',
+                                {"apikey":"fix secrets/get env",
+                                 "username":"inkling",
+                                 "userkey":"fix secrets/get env"}.to_json,
+                                content_type: 'application/json')
+    atoken = JSON.parse(loginData)['token']
+
+    return {Authorization: 'Bearer ' + atoken}
+  end
+
+  def getResults(aquery)
   end
 end
