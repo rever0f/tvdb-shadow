@@ -41,31 +41,29 @@ todo: test
 ### todo
 
 - search page
-  - test 200 response?
   - current search past dates
-  - previous searches
-    - test firefly search
-    - order by
-      - count
+    - paginate
   - style
+  - previous searches
+    - paginate
 - results
   - current key
     - is stored?
     - get new
     - test
-  - test firefly search success(200?)
-  - test create firefly search
-  - test search num incremented
   - result count
   - series on-click link
     - thumbnail
     - title 
     - rating
   - advanced
+    - filter by endpoints
     - previous advanced dropdowns
 - readme
   - install
   - run
+- default ruby functions
+  - test json returns
 
 
 ### done
@@ -74,6 +72,7 @@ todo: test
     - add on link
     - number of times searched
     - order by
+      - count
       - created
       - query
 

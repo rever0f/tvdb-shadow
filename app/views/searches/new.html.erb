@@ -1,21 +1,30 @@
 <h1>Search TVDB</h1>
 
 <div class='search-left search-content' >
+  <div class='search-result' >
   <%= render 'form', search: @search %>
 
   <% if @aquery != '' %>
-    <div class='search-result' >
       search returned x results
     </div>
     <div class='search-right search-data' >
-      <p><%= @aquery %> has been searched <%= @count %> times</p>
+      <p>
+        <%= @aquery %> has been searched 
+        <%= @ahistory['count'] %> times
+      </p>
+      <div class='search-label search-date-title'>
+        on these dates
+      </div>
+      <% @ahistory['dates'].each do | adate | %>
+        <div class='search-dates' ><%= adate.created_at %></div>
+      <% end %>
+    </div>
+  <% else %>
     </div>
   <% end %>
 </div>
 
 <div class='search-right search-history' >
-  <% @baseTo = new_search_path + '?query=' %>
-  <% @baseSort = @baseTo + @aquery + '&sort=' %>
   <div class = 'search-recents-sort' >
     sort by -
     <% @sortopts.each do | sort | %>

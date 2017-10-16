@@ -6,6 +6,17 @@ class Search < ApplicationRecord
     Search.where(query: aquery).count
   end
   
+  def getQueryDates(aquery)
+    Search.select(:created_at).where(query: aquery)
+  end
+  
+  def getQueryHistory(aquery)
+    history = { 'count' => getQueryCount(aquery) }
+    history['dates'] = getQueryDates(aquery)
+
+    return history
+  end
+  
   def getRecent(order='query', start=0, page=0)
     count = 'count'
     query = :query
@@ -14,12 +25,9 @@ class Search < ApplicationRecord
               count => count}
     order = orders.fetch(order, created)
 
-    # return order
-
     if order == count
-      order = created
-      counts = Search.group(query).count
-      return counts.sort_by{ | k, v | v }.reverse
+      return Search.group(query).count.
+               sort_by{ | k, v | v }.reverse
     end
 
     Search.select(query,'max(searches.created_at)').group(query).

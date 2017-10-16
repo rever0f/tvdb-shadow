@@ -18,7 +18,7 @@ class SearchesController < ApplicationController
     @aquery = get.fetch('query', '')
     @sort = get.fetch('sort', '')
     @search = Search.new
-    @count = @search.getQueryCount(@aquery)
+    @ahistory = @search.getQueryHistory(@aquery)
     recentsRaw = @search.getRecent(@sort)
     @recents = []
     @sortopts = ['created', 'query', 'count']
