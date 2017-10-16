@@ -27,12 +27,12 @@ todo: test below
 requires ruby, gem, and bundle
 clone git repo
 
-   cd /path/to/tvdb-shadow/
-   bundle install --without production
-   cp config/env-template.sh config/env.sh
-   vi config/env.sh
-   # fill in fields
-   chmod +x config/env.sh
+    cd /path/to/tvdb-shadow/
+    bundle install --without production
+    cp config/env-template.sh config/env.sh
+    vi config/env.sh
+    # fill in fields
+    chmod +x config/env.sh
 
 
 #### heroku
