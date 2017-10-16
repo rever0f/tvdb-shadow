@@ -33,15 +33,36 @@ clone git repo
    vi config/env.sh
    # fill in fields
    chmod +x config/env.sh
+
+
+#### heroku
+
+    heroku create
+    git push heroku master
+    heroku rails db:migrate
+    heroku config:set SECRET_TVDB_API_KEY=[apikey]
+    heroku config:set SECRET_TVDB_USER=[username]
+    heroku config:set SECRET_TVDB_USER_KEY=[userkey]
    
 
 ### run
 
 todo: test below
 
+#### local
+
    cd /path/to/tvdb-shadow
    config/env.sh
    rails server
+
+
+#### heroku
+
+after git commit on master
+
+    heroku create
+    git push heroku master
+    heroku rails db:migrate
 
 
 ### todo
