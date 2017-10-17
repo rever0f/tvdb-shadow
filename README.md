@@ -33,13 +33,16 @@ clone git repo
     vi config/env.sh
     # fill in fields
     chmod +x config/env.sh
+    rails db:migrate
+    rails db:seed
 
 
 #### heroku
 
     heroku create
     git push heroku master
-    heroku rails db:migrate
+    heroku run rails db:migrate
+    heroku run rails db:seed
     heroku config:set SECRET_TVDB_API_KEY=[apikey]
     heroku config:set SECRET_TVDB_USER=[username]
     heroku config:set SECRET_TVDB_USER_KEY=[userkey]
@@ -51,9 +54,9 @@ todo: test below
 
 #### local
 
-   cd /path/to/tvdb-shadow
-   config/env.sh
-   rails server
+    cd /path/to/tvdb-shadow
+    config/env.sh
+    rails server
 
 
 #### heroku
@@ -62,7 +65,6 @@ after git commit on master
 
     heroku create
     git push heroku master
-    heroku rails db:migrate
 
 
 ### todo
@@ -75,11 +77,12 @@ after git commit on master
     - paginate
 - results
   - current key
-    - is stored?
-    - get new
     - test
   - advanced
     - filter by endpoints
+- heroku
+  - procfile
+  - ssl-only
 - readme
   - toc
     - heroku
@@ -105,6 +108,9 @@ after git commit on master
     - title 
     - start date
     - rating
+  - current key
+    - is stored?
+    - get new
 
 [deployed to heroku]:#deployed-to-heroku
 [install]:#install
