@@ -56,7 +56,6 @@ class Search < ApplicationRecord
   end
 
   def getTvAuth
-    # ApiAuth.new.initApi('tvdb')
     if ApiAuth.where(name: 'tvdb').first.auth == ''
       tvLogin
     end
