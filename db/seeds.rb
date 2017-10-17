@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-api_auth = ApiAuth.create([{ name: 'tvdb', auth: '' a}])
+api_auth = ApiAuth.create([{ name: 'tvdb', auth: ''}])
