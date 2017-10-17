@@ -42,45 +42,55 @@ class Search < ApplicationRecord
   def tvdbBase
     'https://api.thetvdb.com'
   end
-
-  def getTvAuth
+  
+  def tvLogin
     loginData = RestClient.post(tvdbBase + '/login',
                                 {"apikey": ENV['SECRET_TVDB_API_KEY'],
                                  "username": ENV['SECRET_TVDB_USER'],
                                  "userkey": ENV['SECRET_TVDB_USER_KEY']}.to_json,
                                 content_type: 'application/json')
     atoken = JSON.parse(loginData)['token']
+    auth=ApiAuth.where(name: 'tvdb').first
+    auth.auth = atoken
+    auth.save
+  end
 
-    return {Authorization: 'Bearer ' + atoken}
+  def getTvAuth
+    # ApiAuth.new.initApi('tvdb')
+    if ApiAuth.where(name: 'tvdb').first.auth == ''
+      tvLogin
+    end
+
+    return {Authorization: 'Bearer ' +
+            ApiAuth.where(name: 'tvdb').first.auth}
   end
 
 
-  def getTvEndpoint(endPoint)
+  def getTvEndpoint(endPoint, relogin = false)
     begin 
-      return RestClient.get(tvdbBase + endPoint, getTvAuth)
+      if relogin then tvLogin end
+      data = RestClient.get(tvdbBase + endPoint, getTvAuth)
+      return JSON.parse(data)['data']
     rescue
-      return {'data'=>[]}.to_json
+      if relogin then return [] end
+      getTvEndpoint(endPoint, true)
     end
   end
 
 
   def getResults(aquery)
     results = []
-    data = 'data'
     series = 'series'
     search = '/search/' + series
-    querySearch = getTvEndpoint(search + '?name=' + aquery)
-    rawResults = JSON.parse(querySearch)[data]
+    rawResults = getTvEndpoint(search + '?name=' + aquery)
 
     rawResults.each do | v |
       seriesId = '/' + series + '/' + String(v['id'])
-      results.append(JSON.parse(getTvEndpoint(seriesId))[data])
+      results.append(getTvEndpoint(seriesId))
+      #seriesEpisodes = getTvEndpoint(seriesId + '/episodes')
     end
     
     return results
-    # seriesData = getTvEndpoint(seriesId)
-    # JSON.parse(getTvEndpoint(seriesId))[data]
-    # sdep = getTvEndpoint(seriesId + '/episodes')
     # params = getTvEndpoint(search + '/params')
   end
 end
